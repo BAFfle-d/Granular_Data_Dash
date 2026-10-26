@@ -60,6 +60,15 @@
         dataType: 'SMS/TEXT + CALL DATA', lines: 646,
         platforms: ['Google Voice'],
         aliases: ['Ben w From Meetme', 'stalker3 knew sandy']
+      },
+      {
+        id: 'dashboard-06',
+        file: 'emails and gchat dash.html',
+        pageTitle: 'DASHBOARD 06 — EMAILS & GCHAT',
+        dateStart: '2024-03-23', dateEnd: '2025-12-26',
+        dataType: 'EMAIL + GCHAT DATA', lines: 871,
+        platforms: ['GMAIL', 'MBOX Email (quotes stripped)'],
+        aliases: ['American Gaslighter', 'Ben Weingard', 'Dr. Talos', 'MBF', 'StopRaceScience', 'StopRaceScience@protonmail.com', '[ bfloore.online ]', 'americangaslighter@gmail.com', 'barry.floore@gmail.com', 'benweingard@gmail.com']
       }
     ],
     sources: { csv: [], image: [], video: [] },
@@ -312,7 +321,7 @@
 
   function setStatus(msg, isErr) {
     var s = el('viewer-status');
-    s.textContent = msg || ' ';
+    s.textContent = msg || ' ';
     s.classList.toggle('status-err', !!isErr);
   }
 
