@@ -33,9 +33,37 @@
         dataType: 'SMS/TEXT DATA', lines: 1821,
         platforms: ['Voice - SMS'],
         aliases: ['Ben Nelson', 'Ben Weingard Jerks Off In Front Of Children', 'Ben w From Meetme', 'BenStalker YetAnother', 'Forgotten ben', 'KD/BEN/ROCKO TG', 'KD_BEN_ROCKO TG', 'RockoTG BenW Tbh', 'Stalker', 'Stalker_ Sim Card Dylan', 'stalker3 _not ben real n__', 'stalker3 "not ben real n_"', 'stalker3 knew sandy']
+      },
+      {
+        id: 'dashboard-03',
+        file: 'consolidated and master callog dashboard with 4636 Voice SMS.html',
+        pageTitle: 'DASHBOARD 03 — CONSOLIDATED & MASTER CALL LOGS',
+        dateStart: '2022-08-15', dateEnd: '2025-04-12',
+        dataType: 'CALL LOG + SMS/TEXT DATA', lines: 689,
+        platforms: ['Google Voice', 'Voice - Calls'],
+        aliases: ['(929) 568-4636', 'Ben Nelson', 'Ben W 0370', 'Ben Weingard Jerks Off In Front Of Children', 'Ben w From Meetme', 'Forgotten ben', 'Idiot', 'KD_BEN_ROCKO TG', 'Unknown']
+      },
+      {
+        id: 'dashboard-04',
+        file: 'android sms messages dashboard.html',
+        pageTitle: 'DASHBOARD 04 — ANDROID SMS MESSAGES',
+        dateStart: '2024-10-22', dateEnd: '2026-10-26',
+        dataType: 'SMS/TEXT DATA', lines: 4942,
+        platforms: ['android sms'],
+        aliases: ['Another Ben Catfish Maybe', 'Ben And Dylan Sitting On A Dick', 'Ben Asks Me Out On A Date 12 25', 'Ben Busted By The Police', 'Ben Escort Ad 12 25', 'Ben New round Dec 2025', 'Ben Nintendo', 'Ben Phone Call', 'Ben Pretends To Be 16', 'Ben W 0370', 'Ben w From Meetme', 'Ben pretends To Be A Hooker', 'BenTheBlackMatchMaker GlennsFriend', 'BenW But Black', 'DerrickReddit but Really Ben', 'Limp Dick Demon (Ben)', 'Possible Ben Definitely Kooky', 'ScottWallace Ben probably']
+      },
+      {
+        id: 'dashboard-05',
+        file: 'stalker 3 and sandy - bw of children - meetme.html',
+        pageTitle: 'DASHBOARD 05 — STALKER 3 & SANDY / MEETME',
+        dateStart: '2024-04-19', dateEnd: '2025-02-15',
+        dataType: 'SMS/TEXT + CALL DATA', lines: 646,
+        platforms: ['Google Voice'],
+        aliases: ['Ben w From Meetme', 'stalker3 knew sandy']
       }
     ],
     sources: { csv: [], image: [], video: [] },
+    autoDiscovery: { githubRepo: '', sourceRules: {} },
     fallback: true
   };
 
@@ -69,6 +97,122 @@
   function kindLabel(kind) {
     return kind === 'csv' ? 'DOCUMENTS / CSV' : kind === 'image' ? 'IMAGES' : 'AUDIO / VIDEO';
   }
+  function folderFor(kind) {
+    return kind === 'csv' ? 'original_csv' : kind === 'image' ? 'original_image' : 'original_video';
+  }
+
+  /* ================= runtime auto-discovery =================
+     The page tries, in order:
+       1. Server directory listing  (works when previewed via `python -m http.server`:
+          files appear the moment they are dropped into a folder, no rebuild)
+       2. GitHub Contents API       (works on the live site: files appear as soon
+          as they are pushed; needs "githubRepo" set in tools/manifest.config.json
+          and a public repository)
+       3. The generated data/manifest.json (fallback; always used for the
+          dashboard stats: dates / lines / aliases)
+     Whatever succeeds is merged with the manifest's metadata. */
+
+  function normName(s) {
+    return String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+
+  function mapFileToDashboard(name) {
+    var norm = normName(name);
+    // 1) exact/normalized match against each dashboard's own source-file list
+    var dashList = (MANIFEST && MANIFEST.dashboards) || [];
+    for (var i = 0; i < dashList.length; i++) {
+      var sfs = dashList[i].sourceFiles || [];
+      for (var j = 0; j < sfs.length; j++) {
+        var nsf = normName(sfs[j]);
+        if (norm === nsf || (nsf.length > 12 && nsf.indexOf(norm) !== -1) ||
+            (norm.length > 12 && norm.indexOf(nsf) !== -1)) {
+          return dashList[i].id;
+        }
+      }
+    }
+    // 2) keyword rules from tools/manifest.config.json (copied into the manifest)
+    var rules = (MANIFEST.autoDiscovery && MANIFEST.autoDiscovery.sourceRules) || {};
+    var keys = Object.keys(rules);
+    for (var k = 0; k < keys.length; k++) {
+      var kws = rules[keys[k]] || [];
+      for (var w = 0; w < kws.length; w++) {
+        if (name.toLowerCase().indexOf(kws[w].toLowerCase()) !== -1) return keys[k];
+      }
+    }
+    return null;
+  }
+
+  function listFolder(folder, filter, ignores) {
+    function wanted(n) {
+      if (filter && !filter.test(n)) return false;
+      for (var i = 0; i < (ignores || []).length; i++) {
+        try { if (new RegExp(ignores[i], 'i').test(n)) return false; } catch (e) { /* bad pattern */ }
+      }
+      return true;
+    }
+    // 1) server autoindex (python http.server and similar)
+    return fetch('./' + folder + '/').then(function (r) {
+      if (!r.ok) throw new Error('no autoindex');
+      return r.text().then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var names = [];
+        var anchors = doc.querySelectorAll('a');
+        for (var i = 0; i < anchors.length; i++) {
+          var h = anchors[i].getAttribute('href') || '';
+          if (h.indexOf('/') !== -1 || h.indexOf('?') !== -1 || h.charAt(0) === '.') continue;
+          var n = decodeURIComponent(h);
+          if (wanted(n)) names.push(n);
+        }
+        return names; // may be [] for an empty folder — that is the local truth
+      });
+    }).catch(function () {
+      // 2) GitHub Contents API
+      var repo = MANIFEST.autoDiscovery && MANIFEST.autoDiscovery.githubRepo;
+      if (!repo) return Promise.resolve(null);
+      return fetch('https://api.github.com/repos/' + repo + '/contents/' + folder)
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (items) {
+          if (!Array.isArray(items)) return null;
+          return items.filter(function (it) { return it.type === 'file'; })
+            .map(function (it) { return it.name; })
+            .filter(wanted);
+        })
+        .catch(function () { return null; });
+    });
+  }
+
+  function enhanceManifest(m) {
+    var metaByFile = {};
+    (m.dashboards || []).forEach(function (d) { metaByFile[d.file] = d; });
+    var known = [], pending = [];
+
+    return listFolder('dashboards', /\.html$/i).then(function (dashFiles) {
+      if (dashFiles) {
+        dashFiles.forEach(function (f) {
+          if (metaByFile[f]) known.push(metaByFile[f]);
+          else pending.push({ id: 'pending-' + f, file: f, pendingMeta: true, pageTitle: f });
+        });
+        known.sort(function (a, b) { return a.id < b.id ? -1 : a.id > b.id ? 1 : 0; });
+        pending.sort(function (a, b) { return a.file < b.file ? -1 : 1; });
+        m.dashboards = known.concat(pending);
+      } /* else: keep manifest list as-is */
+
+      var kinds = ['csv', 'image', 'video'];
+      var ignores = (m.autoDiscovery && m.autoDiscovery.ignoreSourcePatterns) || [];
+      var seq = Promise.resolve();
+      kinds.forEach(function (kind) {
+        seq = seq.then(function () {
+          return listFolder(folderFor(kind), null, ignores).then(function (names) {
+            if (!names) return; // no runtime listing — keep manifest data
+            m.sources[kind] = names.map(function (n) {
+              return { name: n, path: folderFor(kind) + '/' + n, size: 0, dashboard: mapFileToDashboard(n) };
+            });
+          });
+        });
+      });
+      return seq.then(function () { return m; });
+    });
+  }
 
   /* ---- render: identity ------------------------------------------------ */
   function renderIdentity() {
@@ -87,14 +231,21 @@
       var a = document.createElement('a');
       a.href = './dashboards/' + encodeURIComponent(d.file);
       a.className = 'dir-entry';
-      var sub1 = esc((d.dataType || 'DATA') + ' LINES: ' + fmtNum(d.lines));
-      if (d.platforms && d.platforms.length) sub1 += ' | ' + esc(d.platforms.join(', ').toUpperCase());
-      var sub2 = (d.aliases && d.aliases.length)
-        ? 'ALIASES: ' + esc(d.aliases.join(', ').toUpperCase())
-        : 'ALIASES: NONE LISTED';
+      var head, sub1, sub2;
+      if (d.pendingMeta) {
+        head = d.file.replace(/\.html$/i, '').replace(/[-_]+/g, ' ');
+        sub1 = 'RECENTLY ADDED — RUN TOOLS\REBUILD.BAT TO SHOW DATES / LINES / ALIASES';
+        sub2 = 'ALREADY BROWSABLE';
+      } else {
+        head = fmtDate(d.dateStart).toUpperCase() + ' – ' + fmtDate(d.dateEnd).toUpperCase();
+        sub1 = esc((d.dataType || 'DATA') + ' LINES: ' + fmtNum(d.lines));
+        if (d.platforms && d.platforms.length) sub1 += ' | ' + esc(d.platforms.join(', ').toUpperCase());
+        sub2 = (d.aliases && d.aliases.length)
+          ? 'ALIASES: ' + esc(d.aliases.join(', ').toUpperCase())
+          : 'ALIASES: NONE LISTED';
+      }
       a.innerHTML =
-        '&gt; [' + String(i + 1).padStart(2, '0') + '] ' +
-        esc(fmtDate(d.dateStart).toUpperCase()) + ' &#8211; ' + esc(fmtDate(d.dateEnd).toUpperCase()) +
+        '&gt; [' + String(i + 1).padStart(2, '0') + '] ' + esc(head) +
         '<span class="sub">' + sub1 + '</span>' +
         '<span class="sub">' + sub2 + '</span>';
       nav.appendChild(a);
@@ -143,13 +294,13 @@
     });
     if (MANIFEST.fallback) {
       el('source-note').textContent =
-        '> MANIFEST UNAVAILABLE (page opened from disk?). Source dropdowns are empty. ' +
-        'Serve the folder over HTTP (GitHub Pages, or: python -m http.server) and regenerate with tools\\REBUILD.bat.';
+        '> INDEX UNAVAILABLE (page opened from disk?). Serve the folder over HTTP — GitHub Pages, or: python -m http.server.';
     } else {
       el('source-note').textContent =
-        'Dropdowns auto-fill from the original_csv / original_image / original_video folders via data\\manifest.json. ' +
-        'After adding or renaming files, run tools\\REBUILD.bat to refresh. Manifest generated: ' +
-        (MANIFEST.generated || 'unknown');
+        'Dropdowns auto-fill live from the original_csv / original_image / original_video folders ' +
+        '(folder listing locally, GitHub API on the live site once "githubRepo" is set in tools\\manifest.config.json). ' +
+        'Run tools\\REBUILD.bat to refresh dashboard stats and file-to-dashboard links. ' +
+        'Index generated: ' + (MANIFEST.generated || 'unknown');
     }
   }
 
@@ -161,7 +312,7 @@
 
   function setStatus(msg, isErr) {
     var s = el('viewer-status');
-    s.textContent = msg || ' ';
+    s.textContent = msg || ' ';
     s.classList.toggle('status-err', !!isErr);
   }
 
@@ -213,6 +364,11 @@
     body.innerHTML = '';
     setStatus('LOADING ' + f.path + ' …');
 
+    if (ext === 'heic' || ext === 'heif') {
+      // browsers (except Safari) cannot decode HEIC — offer download instead
+      setStatus('! HEIC IMAGES CANNOT BE PREVIEWED IN MOST BROWSERS — USE EXPORT TO DOWNLOAD ' + f.name, true);
+      return;
+    }
     if (IMAGE_EXT.indexOf(ext) !== -1) {
       var img = document.createElement('img');
       img.src = encodeURI(f.path);
@@ -351,11 +507,12 @@
     fetch('./data/manifest.json', { cache: 'no-store' }).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
+    }).catch(function () {
+      return FALLBACK_MANIFEST;
     }).then(function (m) {
       MANIFEST = m;
-      renderAll();
-    }).catch(function () {
-      MANIFEST = FALLBACK_MANIFEST;
+      return enhanceManifest(MANIFEST);
+    }).then(function () {
       renderAll();
     });
   }
