@@ -170,6 +170,11 @@ main { padding-block: 28px 40px; }
   padding: 16px;
 }
 
+/* the [hidden] attribute must always win over display:grid above */
+.viewer-overlay[hidden] {
+  display: none;
+}
+
 .viewer-window {
   width: min(900px, 96vw);
   max-height: 92vh;
