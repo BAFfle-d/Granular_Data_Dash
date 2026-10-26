@@ -4,40 +4,68 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>[INSERT TITLE] — Granular Data Dash</title>
-  <link rel="icon" href="data:,">
+  <title>WEINGARD.ONLINE — Document Index</title>
+  <link rel="icon" href="./favicon.ico">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <header class="banner">
     <div class="wrap">
-      <p class="system-name">Granular_Data_Dash // Document Index</p>
-      <h1>[INSERT TITLE]</h1>
+      <p class="system-name">WEINGARD.ONLINE // DOCUMENT INDEX</p>
+      <h1>WEINGARD.ONLINE</h1>
     </div>
   </header>
 
   <main class="wrap">
-    <p class="intro">[Write one short paragraph here explaining what this collection contains and how the dashboards should be used.]</p>
+    <p class="intro" id="intro">[ INTRODUCTORY PARAGRAPH — PENDING ]</p>
 
     <h2 class="section-label">Available Dashboards</h2>
-    <p class="prompt" aria-hidden="true">C:\GRANULAR_DATA_DASH&gt; DIR</p>
-    <nav class="directory" aria-label="Dashboard files">
-      <a href="./dashboards/josh-nunes-dr-talos-ben-weingard.html">&gt; [01] JOSH NUNES / DR TALOS / BEN WEINGARD</a>
-      <a href="./dashboards/stalker3-stalker-nelson-weingard.html">&gt; [02] STALKER3 / STALKER / NELSON / WEINGARD</a>
+    <p class="prompt" aria-hidden="true">C:\WEINGARD.ONLINE\DASHBOARDS&gt; DIR</p>
+    <nav class="directory" id="dashboard-dir" aria-label="Dashboard files">
+      <p class="dir-loading">&gt; READING INDEX…</p>
     </nav>
-    <p class="file-count">2 dashboard files listed</p>
+    <p class="file-count" id="dashboard-count"></p>
+
+    <h2 class="section-label">Original Sources</h2>
+    <p class="prompt" aria-hidden="true">C:\WEINGARD.ONLINE&gt; DIR ORIGINAL_CSV ORIGINAL_IMAGE ORIGINAL_VIDEO</p>
+    <div class="source-bank" id="source-bank">
+      <p class="dir-loading">&gt; READING FILE BANKS…</p>
+    </div>
+    <p class="file-count" id="source-note">Dropdowns auto-fill from the original_csv / original_image / original_video folders (via data\manifest.json — regenerate with tools\REBUILD.bat after adding files).</p>
 
     <h2 class="section-label">Contact Information</h2>
     <div class="contact">
-      <p>[NAME]</p>
-      <p>[EMAIL ADDRESS]</p>
-      <p>[PHONE NUMBER — OPTIONAL]</p>
+      <p>Barry Floore</p>
+      <p><a href="mailto:barry.floore@gmail.com">barry.floore@gmail.com</a></p>
     </div>
 
     <h2 class="section-label">More Information</h2>
-    <a class="more-link" href="./more-information.html">&gt; [MORE INFORMATION LINK TEXT]</a>
+    <a class="more-link" href="./more-information.html">&gt; MORE INFORMATION</a>
 
-    <footer class="footer">END OF INDEX // GRANULAR_DATA_DASH</footer>
+    <footer class="footer">END OF INDEX // WEINGARD.ONLINE</footer>
   </main>
+
+  <!-- ===================== SOURCE FILE VIEWER ===================== -->
+  <div class="viewer-overlay" id="viewer" role="dialog" aria-modal="true" aria-label="File viewer" hidden>
+    <div class="viewer-window">
+      <div class="viewer-titlebar">
+        <span class="viewer-filename" id="viewer-filename">FILE</span>
+        <button type="button" class="viewer-close" id="viewer-close">CLOSE [X]</button>
+      </div>
+      <div class="viewer-toolbar">
+        <button type="button" id="viewer-prev">&#9664; PREV</button>
+        <button type="button" id="viewer-next">NEXT &#9654;</button>
+        <span class="viewer-pos" id="viewer-pos">1 / 1</span>
+        <span class="viewer-toolbar-gap"></span>
+        <button type="button" id="viewer-copy">COPY</button>
+        <button type="button" id="viewer-export">EXPORT</button>
+        <a class="viewer-dashlink" id="viewer-dashlink" href="#" target="_self" hidden>VIEW IN DASHBOARD &#8599;</a>
+      </div>
+      <div class="viewer-body" id="viewer-body"></div>
+      <div class="viewer-statusbar" id="viewer-status">&nbsp;</div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
 </body>
 </html>

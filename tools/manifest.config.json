@@ -1,0 +1,36 @@
+{
+  "identity": {
+    "siteTitle": "WEINGARD.ONLINE",
+    "contactName": "Barry Floore",
+    "contactEmail": "barry.floore@gmail.com",
+    "intro": ""
+  },
+
+  "dashboards": {
+    "josh-nunes-dr-talos-ben-weingard.html": {
+      "id": "dashboard-01",
+      "pageTitle": "DASHBOARD 01 — JOSH NUNES / DR TALOS / BEN WEINGARD",
+      "dataType": "SMS/TEXT + CALL DATA"
+    },
+    "stalker3-stalker-nelson-weingard.html": {
+      "id": "dashboard-02",
+      "pageTitle": "DASHBOARD 02 — STALKER3 / STALKER / NELSON / WEINGARD",
+      "dataType": "SMS/TEXT DATA"
+    }
+  },
+
+  "excludeAliases": ["me", "barry f"],
+  "excludePlatforms": ["call", "text"],
+
+  "ignoreSourcePatterns": [
+    "^placeholder$",
+    "csv-dashboard-workspace-\\d+\\.json$",
+    "^desktop\\.ini$",
+    "^thumbs\\.db$"
+  ],
+
+  "sourceKeywordRules": {
+    "dashboard-01": ["nunes", "talos"],
+    "dashboard-02": ["stalker", "sandy", "nelson", "meetme", "rocko", "ben w ", "forgotten ben"]
+  }
+}

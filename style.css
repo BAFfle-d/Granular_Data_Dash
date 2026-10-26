@@ -91,6 +91,202 @@ main { padding-block: 28px 40px; }
 
 .directory a + a { border-top: 1px dashed var(--heading); }
 
+/* ---- Windows-file-manager-style directory entries ---- */
+.dir-entry {
+  display: block;
+  padding: 12px 8px;
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.dir-entry .sub {
+  display: block;
+  padding-left: 2ch;
+  color: var(--heading);
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.dir-loading, .dir-empty {
+  margin: 0;
+  padding: 12px 8px;
+  color: var(--heading);
+}
+
+/* ---- original-source dropdown bank ---- */
+.source-bank {
+  border: 2px solid var(--heading);
+  padding: 10px 8px;
+}
+
+.source-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 6px 0;
+}
+
+.source-row + .source-row { border-top: 1px dashed var(--heading); }
+
+.source-label {
+  flex: 0 0 auto;
+  min-width: 21ch;
+  color: var(--heading);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.source-select {
+  flex: 1 1 220px;
+  min-width: 0;
+  font: inherit;
+  font-size: 14px;
+  padding: 6px 8px;
+  border: 2px solid var(--heading);
+  background: #fff;
+  color: var(--text);
+  max-width: 100%;
+}
+
+.source-count {
+  flex: 0 0 auto;
+  color: var(--heading);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---- source file viewer (DOS dialog) ---- */
+.viewer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(30, 30, 30, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.viewer-window {
+  width: min(900px, 96vw);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 3px solid var(--heading);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.35);
+}
+
+.viewer-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--blue);
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.viewer-filename {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
+.viewer-close {
+  flex: 0 0 auto;
+  font: inherit;
+  font-weight: 700;
+  color: var(--heading);
+  background: var(--paper);
+  border: 2px solid var(--heading);
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.viewer-close:hover { background: var(--yellow); }
+
+.viewer-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--heading);
+  background: #efefef;
+}
+
+.viewer-toolbar button {
+  font: inherit;
+  font-weight: 700;
+  color: var(--blue);
+  background: #fff;
+  border: 2px solid var(--heading);
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.viewer-toolbar button:hover { background: var(--blue); color: var(--paper); }
+
+.viewer-pos { color: var(--heading); font-size: 13px; font-weight: 700; }
+
+.viewer-toolbar-gap { flex: 1 1 auto; }
+
+.viewer-dashlink {
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  border: 2px dashed var(--blue);
+  padding: 3px 8px;
+}
+
+.viewer-dashlink:hover { background: var(--blue); color: var(--paper); }
+
+.viewer-body {
+  flex: 1 1 auto;
+  min-height: 200px;
+  overflow: auto;
+  background: #fff;
+  border-bottom: 2px solid var(--heading);
+}
+
+.viewer-text {
+  margin: 0;
+  padding: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.viewer-media {
+  display: block;
+  max-width: 100%;
+  max-height: 60vh;
+  margin: 0 auto;
+  padding: 10px;
+  object-fit: contain;
+}
+
+.viewer-audio { display: block; width: calc(100% - 24px); margin: 12px; }
+
+.viewer-statusbar {
+  padding: 6px 10px;
+  color: var(--heading);
+  font-size: 12px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.viewer-statusbar.status-err { color: #9c1c1c; }
+
+body.viewer-open { overflow: hidden; }
+
 a:hover,
 a:active {
   background: var(--blue);
