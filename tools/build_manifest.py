@@ -43,14 +43,46 @@ SOURCE_FOLDERS = {
     "video": "original_video",
 }
 
-# Column-name candidates per logical field (different exports name them differently)
+# Column-name candidates per logical field (matched case-insensitively)
 CANDIDATES = {
-    "sender": ["FROM_SENDER", "sender_name"],
-    "receiver": ["TO_RECEIVER", "recipient_name"],
-    "platform": ["PLATFORM", "product"],
-    "file": ["FILE_NAME", "file_name"],
-    "date": ["DATE", "date"],
+    "sender": ["from_sender", "sender_name", "sender name", "contact_name", "sendername"],
+    "receiver": ["to_receiver", "recipient_name", "recipient name", "receivername"],
+    "platform": ["platform", "product"],
+    "file": ["file_name", "file name", "sourcefile", "source file"],
+    "date": ["date"],
 }
+
+
+def find_col(cols_lower, names):
+    """First column index matching any candidate name (case-insensitive)."""
+    for n in names:
+        if n in cols_lower:
+            return cols_lower.index(n)
+    return None
+
+DATE_PATTERNS = [
+    (re.compile(r"^(\d{4})-(\d{2})-(\d{2})$"), (1, 2, 3)),          # 2024-04-19
+    (re.compile(r"^(\d{1,2})/(\d{1,2})/(\d{4})$"), (3, 1, 2)),      # 2/14/2025
+    (re.compile(r"^([A-Za-z]{3})[a-z]* (\d{1,2}) (\d{4})$"), None),  # Feb 14 2025
+]
+MONTHS = {m: i + 1 for i, m in enumerate(
+    ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])}
+
+
+def parse_date(d):
+    """Normalize a date cell to ISO yyyy-mm-dd; return None if unrecognized."""
+    d = (d or "").strip()
+    for rx, order in DATE_PATTERNS:
+        m = rx.match(d)
+        if not m:
+            continue
+        if order:
+            y, mo, da = (int(m.group(i)) for i in order)
+        else:
+            mo, da, y = MONTHS.get(m.group(1), 0), int(m.group(2)), int(m.group(3))
+        if mo and 1 <= mo <= 12:
+            return f"{y:04d}-{mo:02d}-{da:02d}"
+    return None
 
 
 def load_config():
@@ -84,12 +116,12 @@ def extract_dashboard(path):
 
     for card in cards.values():
         cols = card.get("cols", [])
+        cols_lower = [str(c).lower() for c in cols]
         ix = {}
         for key, names in CANDIDATES.items():
-            for n in names:
-                if n in cols:
-                    ix[key] = cols.index(n)
-                    break
+            i = find_col(cols_lower, names)
+            if i is not None:
+                ix[key] = i
         for row in card.get("rows", []):
             nrows += 1
             c = row.get("c", [])
@@ -106,9 +138,9 @@ def extract_dashboard(path):
                 platforms.add(g("platform"))
             if g("file"):
                 source_files.add(g("file"))
-            d = g("date")
-            if d and re.match(r"\d{4}-\d{2}-\d{2}", d):
-                dates.append(d[:10])
+            d = parse_date(g("date"))
+            if d:
+                dates.append(d)
 
     # unique-record count from the overview chip ("1030 unique")
     uniq = re.search(r">([0-9,]+) unique<", html)
@@ -180,7 +212,40 @@ def main():
             "sourceFiles": meta["sourceFiles"],
         })
 
+    # config-only dashboards: file lives in the GitHub repo but not in the
+    # local project — config supplies all of their stats (see dashboard-05)
+    seen_files = {d["file"] for d in dashboards}
+    for fname, override in dash_cfg.items():
+        if fname in seen_files or not override.get("id"):
+            continue
+        dashboards.append({
+            "id": override["id"],
+            "file": fname,
+            "pageTitle": override.get("pageTitle", fname),
+            "dateStart": override.get("dateStart"),
+            "dateEnd": override.get("dateEnd"),
+            "dataType": override.get("dataType", "SMS/TEXT DATA"),
+            "lines": override.get("lines"),
+            "platforms": override.get("platforms", []),
+            "aliases": [a for a in override.get("aliases", []) if a.lower() not in alias_exclude],
+            "sourceFiles": override.get("sourceFiles", []),
+        })
+
+    # display in configured numeric order (dashboard-01, -02, …), not filename order
+    dashboards.sort(key=lambda d: d["id"])
+
     # ---- source folders ---------------------------------------------------
+    # extra_sources.json lists files that exist in the GitHub repo but not in
+    # the local project folders (e.g. originals only stored in the repo). Local
+    # files always win when both are present.
+    extra_src = {}
+    extra_path = ROOT / "tools" / "extra_sources.json"
+    if extra_path.exists():
+        try:
+            extra_src = json.loads(extra_path.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"! extra_sources.json unreadable ({e}); ignoring")
+
     sources = {}
     mapping_rules = cfg.get("sourceKeywordRules", {})
     for kind, folder in SOURCE_FOLDERS.items():
@@ -198,6 +263,19 @@ def main():
                     "size": f.stat().st_size,
                     "dashboard": find_dashboard_for_file(f.name, dashboards, mapping_rules),
                 })
+        local_names = {f["name"] for f in files}
+        for ef in extra_src.get(kind, []):
+            if ef["name"] in local_names:
+                continue
+            if any(re.search(pat, ef["name"], re.I) for pat in ignore_sources):
+                continue
+            files.append({
+                "name": ef["name"],
+                "path": f"{folder}/{ef['name']}",
+                "size": ef.get("size", 0),
+                "dashboard": find_dashboard_for_file(ef["name"], dashboards, mapping_rules),
+            })
+        files.sort(key=lambda f: f["name"].lower())
         sources[kind] = files
 
     manifest = {
@@ -210,6 +288,13 @@ def main():
         },
         "dashboards": dashboards,
         "sources": sources,
+        # lets the live page auto-discover newly added files at runtime
+        # (folder listings / GitHub API) without regenerating this manifest
+        "autoDiscovery": {
+            "githubRepo": cfg.get("githubRepo", ""),
+            "sourceRules": cfg.get("sourceKeywordRules", {}),
+            "ignoreSourcePatterns": cfg.get("ignoreSourcePatterns", []),
+        },
     }
 
     OUT_PATH.parent.mkdir(exist_ok=True)

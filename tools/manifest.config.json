@@ -1,4 +1,6 @@
 {
+  "githubRepo": "BAFfle-d/Granular_Data_Dash",
+
   "identity": {
     "siteTitle": "WEINGARD.ONLINE",
     "contactName": "Barry Floore",
@@ -16,10 +18,43 @@
       "id": "dashboard-02",
       "pageTitle": "DASHBOARD 02 — STALKER3 / STALKER / NELSON / WEINGARD",
       "dataType": "SMS/TEXT DATA"
+    },
+    "consolidated and master callog dashboard with 4636 Voice SMS.html": {
+      "id": "dashboard-03",
+      "pageTitle": "DASHBOARD 03 — CONSOLIDATED & MASTER CALL LOGS",
+      "dataType": "CALL LOG + SMS/TEXT DATA"
+    },
+    "android sms messages dashboard.html": {
+      "id": "dashboard-04",
+      "pageTitle": "DASHBOARD 04 — ANDROID SMS MESSAGES",
+      "dataType": "SMS/TEXT DATA"
+    },
+
+    "stalker 3 and sandy - bw of children - meetme.html": {
+      "id": "dashboard-05",
+      "pageTitle": "DASHBOARD 05 — STALKER 3 & SANDY / MEETME",
+      "dataType": "SMS/TEXT + CALL DATA",
+      "lines": 646,
+      "dateStart": "2024-04-19",
+      "dateEnd": "2025-02-15",
+      "platforms": ["Google Voice"],
+      "aliases": ["Ben w From Meetme", "stalker3 knew sandy"],
+      "sourceFiles": [
+        "stalker3 knew sandy - Text - 2024-04-19T23_15_10Z.html",
+        "BEN STUFF.txt",
+        "Untitled spreadsheet - transmogrifier_export (2) (1).csv"
+      ],
+      "_note": "This dashboard file lives in the GitHub repo only; entries here supply its stats."
+    },
+
+    "emails and gchat dash.html": {
+      "id": "dashboard-06",
+      "pageTitle": "DASHBOARD 06 — EMAILS & GCHAT",
+      "dataType": "EMAIL + GCHAT DATA"
     }
   },
 
-  "excludeAliases": ["me", "barry f"],
+  "excludeAliases": ["me", "barry f", "barry floore"],
   "excludePlatforms": ["call", "text"],
 
   "ignoreSourcePatterns": [
@@ -30,7 +65,10 @@
   ],
 
   "sourceKeywordRules": {
+    "dashboard-06": ["gchat", "compendium", "totality email", "protonmail"],
+    "dashboard-05": ["stalker3 knew sandy", "deduped stalker3", "jerks off in front of children", "ben stuff", "ben w from meetme"],
+    "dashboard-03": ["calllog", "call log", "4636", "meetme to", "meetme to 9046004423"],
     "dashboard-01": ["nunes", "talos"],
-    "dashboard-02": ["stalker", "sandy", "nelson", "meetme", "rocko", "ben w ", "forgotten ben"]
+    "dashboard-02": ["stalker", "sandy", "nelson", "rocko", "forgotten ben", "ben w from meetme", "ben w from meetme - text"]
   }
 }
