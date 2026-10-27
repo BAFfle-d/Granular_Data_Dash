@@ -339,6 +339,20 @@ a:focus-visible {
   font-size: 13px;
 }
 
+/* pinned initiation-conversation section */
+.pin-note {
+  margin: 8px 0 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+.pin-note strong { color: var(--text); }
+
+.pin-dir { margin-bottom: 4px; }
+
+.pin-entry { border-left: 4px solid var(--yellow); }
+
 @media (max-width: 420px) {
   .wrap { width: min(100% - 24px, 44rem); }
   .banner .wrap { padding-block: 20px; }
