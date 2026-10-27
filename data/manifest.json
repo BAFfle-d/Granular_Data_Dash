@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T13:05:41",
+  "generated": "2026-10-26T20:29:55",
   "identity": {
     "siteTitle": "WEINGARD.ONLINE",
     "contactName": "Barry Floore",
@@ -427,6 +427,114 @@
       }
     ],
     "image": [
+      {
+        "name": "12 9 2025 duval chris telegram info.PNG",
+        "path": "original_image/12 9 2025 duval chris telegram info.PNG",
+        "size": 359516,
+        "dashboard": null
+      },
+      {
+        "name": "3 11 2024 texting sms with ben from sc.PNG",
+        "path": "original_image/3 11 2024 texting sms with ben from sc.PNG",
+        "size": 539467,
+        "dashboard": null
+      },
+      {
+        "name": "3 11 2026 barry floore snap - not mine - wtih sanp account - not marked.PNG",
+        "path": "original_image/3 11 2026 barry floore snap - not mine - wtih sanp account - not marked.PNG",
+        "size": 326102,
+        "dashboard": null
+      },
+      {
+        "name": "3 11 2026 list of been alias sna p accounts.PNG",
+        "path": "original_image/3 11 2026 list of been alias sna p accounts.PNG",
+        "size": 524282,
+        "dashboard": null
+      },
+      {
+        "name": "3 11 2026 list of ben alias snap accounts.PNG",
+        "path": "original_image/3 11 2026 list of ben alias snap accounts.PNG",
+        "size": 427902,
+        "dashboard": null
+      },
+      {
+        "name": "3 11 2026barry floore snap not mine with ben snap account march 2025.png",
+        "path": "original_image/3 11 2026barry floore snap not mine with ben snap account march 2025.png",
+        "size": 462430,
+        "dashboard": null
+      },
+      {
+        "name": "3 18 26 ben w from meetme snap account details - conversation on snap.PNG",
+        "path": "original_image/3 18 26 ben w from meetme snap account details - conversation on snap.PNG",
+        "size": 315824,
+        "dashboard": "dashboard-05"
+      },
+      {
+        "name": "3 18 26 ben w from meetme snap account details - profile pic.PNG",
+        "path": "original_image/3 18 26 ben w from meetme snap account details - profile pic.PNG",
+        "size": 721474,
+        "dashboard": "dashboard-05"
+      },
+      {
+        "name": "3 18 26 ben w from meetme snap account details - profile.PNG",
+        "path": "original_image/3 18 26 ben w from meetme snap account details - profile.PNG",
+        "size": 2407675,
+        "dashboard": "dashboard-05"
+      },
+      {
+        "name": "3 18 26 ben w from meetme snap account details - texting convo.PNG",
+        "path": "original_image/3 18 26 ben w from meetme snap account details - texting convo.PNG",
+        "size": 331446,
+        "dashboard": "dashboard-05"
+      },
+      {
+        "name": "3 18 26 ben w from meetme snap account details 1.PNG",
+        "path": "original_image/3 18 26 ben w from meetme snap account details 1.PNG",
+        "size": 3616714,
+        "dashboard": "dashboard-05"
+      },
+      {
+        "name": "3 18 26 ben w from meetme snap account details.PNG",
+        "path": "original_image/3 18 26 ben w from meetme snap account details.PNG",
+        "size": 446958,
+        "dashboard": "dashboard-05"
+      },
+      {
+        "name": "6 11 2025 ben the stalker 8452803476  text thread 1.PNG",
+        "path": "original_image/6 11 2025 ben the stalker 8452803476  text thread 1.PNG",
+        "size": 353315,
+        "dashboard": "dashboard-02"
+      },
+      {
+        "name": "6 11 2025 ben the stalker 8452803476  text thread.PNG",
+        "path": "original_image/6 11 2025 ben the stalker 8452803476  text thread.PNG",
+        "size": 466097,
+        "dashboard": "dashboard-02"
+      },
+      {
+        "name": "6 3 2025 ben from tgsnap account details.PNG",
+        "path": "original_image/6 3 2025 ben from tgsnap account details.PNG",
+        "size": 255012,
+        "dashboard": null
+      },
+      {
+        "name": "7 14 2025 ben the stalker text thread - showing blocked.PNG",
+        "path": "original_image/7 14 2025 ben the stalker text thread - showing blocked.PNG",
+        "size": 101894,
+        "dashboard": "dashboard-02"
+      },
+      {
+        "name": "8 23 2025 meetme contact with don do.PNG",
+        "path": "original_image/8 23 2025 meetme contact with don do.PNG",
+        "size": 998664,
+        "dashboard": null
+      },
+      {
+        "name": "8 31 24 contract ddemand of stalker3 talos on telegram.PNG",
+        "path": "original_image/8 31 24 contract ddemand of stalker3 talos on telegram.PNG",
+        "size": 402837,
+        "dashboard": "dashboard-01"
+      },
       {
         "name": "IMG_0231.jpg",
         "path": "original_image/IMG_0231.jpg",
@@ -1112,7 +1220,20 @@
         "dashboard": null
       }
     ],
-    "video": []
+    "video": [
+      {
+        "name": "4 19 2024 Text Free Call Initiation - no audio.mp4",
+        "path": "original_video/4 19 2024 Text Free Call Initiation - no audio.mp4",
+        "size": 19922974,
+        "dashboard": null
+      },
+      {
+        "name": "4 19 2024 TextFree Call and Block - No Audio.mp4",
+        "path": "original_video/4 19 2024 TextFree Call and Block - No Audio.mp4",
+        "size": 5295386,
+        "dashboard": null
+      }
+    ]
   },
   "autoDiscovery": {
     "githubRepo": "BAFfle-d/Granular_Data_Dash",
