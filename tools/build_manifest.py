@@ -278,6 +278,23 @@ def main():
         files.sort(key=lambda f: f["name"].lower())
         sources[kind] = files
 
+    # YouTube-hosted videos (for files too long to host in the repo): shown in
+    # the video dropdown and embedded in the viewer. Add entries to the
+    # "videoLinks" list in tools/manifest.config.json as
+    #   {"title": "...", "url": "https://www.youtube.com/watch?v=..."}
+    for vl in cfg.get("videoLinks", []):
+        url = vl.get("url", "")
+        if not url:
+            continue
+        sources["video"].append({
+            "name": vl.get("title", url),
+            "path": "",
+            "size": 0,
+            "dashboard": None,
+            "youtube": url,
+        })
+    sources["video"].sort(key=lambda f: f["name"].lower())
+
     manifest = {
         "generated": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
         "identity": {
