@@ -371,8 +371,21 @@
 
     var body = el('viewer-body');
     body.innerHTML = '';
-    setStatus('LOADING ' + f.path + ' …');
+    setStatus('LOADING ' + (f.path || f.name) + ' …');
 
+    // YouTube-hosted video: embed instead of loading a local file
+    if (f.youtube) {
+      var m = /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([\w-]{6,})/.exec(f.youtube);
+      var fr = document.createElement('iframe');
+      fr.src = m ? 'https://www.youtube.com/embed/' + m[1] : f.youtube;
+      fr.className = 'viewer-media viewer-youtube';
+      fr.setAttribute('allowfullscreen', '');
+      fr.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      fr.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      body.appendChild(fr);
+      setStatus('YOUTUBE VIDEO — ' + f.name + ' (EXPORT OPENS IT ON YOUTUBE)');
+      return;
+    }
     if (ext === 'heic' || ext === 'heif') {
       // browsers (except Safari) cannot decode HEIC — offer download instead
       setStatus('! HEIC IMAGES CANNOT BE PREVIEWED IN MOST BROWSERS — USE EXPORT TO DOWNLOAD ' + f.name, true);
@@ -473,6 +486,11 @@
 
   function doExport() {
     var f = viewer.list[viewer.index];
+    if (f.youtube) {
+      window.open(f.youtube, '_blank', 'noopener');
+      setStatus('OPENED ON YOUTUBE — ' + f.name);
+      return;
+    }
     fetch(encodeURI(f.path)).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.blob();
