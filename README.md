@@ -1,6 +1,6 @@
 # WEINGARD.ONLINE
 
-A static, DOS-styled front page indexing the dashboards in `dashboards/` and the original source files in `original_csv/`, `original_image/`, and `original_video/`. The source viewer provides close, previous/next, copy, export, and “view in dashboard” controls.
+A static, DOS-styled front page indexing the dashboards in `dashboards/` and the original source files in `original_csv/`, `original_image/`, and `original_video/`. The source viewer provides close, previous/next, copy, export, and “view in dashboard” controls. PDFs may be placed in either `original_csv/` or `original_image/`; both dropdowns list them, with an in-browser preview where supported and Export as a fallback.
 
 ## Automatic updates on GitHub
 

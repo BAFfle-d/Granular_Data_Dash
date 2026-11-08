@@ -247,6 +247,14 @@
       fr.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin'); body.appendChild(fr);
       setStatus('YOUTUBE VIDEO — ' + f.name + ' (EXPORT OPENS IT ON YOUTUBE)'); return;
     }
+    if (ext === 'pdf') {
+      var pdf = document.createElement('iframe');
+      pdf.src = encodeURI(f.path) + '#view=FitH';
+      pdf.className = 'viewer-pdf';
+      pdf.setAttribute('title', 'PDF preview: ' + f.name);
+      body.appendChild(pdf);
+      setStatus('PDF PREVIEW — USE EXPORT IF YOUR BROWSER CANNOT DISPLAY IT INLINE.'); return;
+    }
     if (ext === 'heic' || ext === 'heif') {
       setStatus('! HEIC IMAGES CANNOT BE PREVIEWED IN MOST BROWSERS — USE EXPORT TO DOWNLOAD ' + f.name, true); return;
     }
