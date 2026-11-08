@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08T13:27:06",
+  "generated": "2026-11-08T13:27:47",
   "identity": {
     "siteTitle": "WEINGARD.ONLINE",
     "contactName": "Barry Floore",
@@ -415,6 +415,114 @@
   ],
   "sources": {
     "csv": [
+      {
+        "name": "10 16 24 stopracescience email.pdf",
+        "path": "original_csv/10 16 24 stopracescience email.pdf",
+        "size": 1645702,
+        "dashboard": null
+      },
+      {
+        "name": "10 16 24b stopracescience email.pdf",
+        "path": "original_csv/10 16 24b stopracescience email.pdf",
+        "size": 2351414,
+        "dashboard": null
+      },
+      {
+        "name": "10 16 24c stopracescience email.pdf",
+        "path": "original_csv/10 16 24c stopracescience email.pdf",
+        "size": 1473773,
+        "dashboard": null
+      },
+      {
+        "name": "10 17 24 stopracescience email.pdf",
+        "path": "original_csv/10 17 24 stopracescience email.pdf",
+        "size": 382896,
+        "dashboard": null
+      },
+      {
+        "name": "10 17 24b stopracescience email.pdf",
+        "path": "original_csv/10 17 24b stopracescience email.pdf",
+        "size": 2597620,
+        "dashboard": null
+      },
+      {
+        "name": "10 19 24 stopracescience email.pdf",
+        "path": "original_csv/10 19 24 stopracescience email.pdf",
+        "size": 735127,
+        "dashboard": null
+      },
+      {
+        "name": "2 11 25 stopracescience email.pdf",
+        "path": "original_csv/2 11 25 stopracescience email.pdf",
+        "size": 947149,
+        "dashboard": null
+      },
+      {
+        "name": "2 13 25 stopracescience email.pdf",
+        "path": "original_csv/2 13 25 stopracescience email.pdf",
+        "size": 1068529,
+        "dashboard": null
+      },
+      {
+        "name": "2 14 25 stopracescience email.pdf",
+        "path": "original_csv/2 14 25 stopracescience email.pdf",
+        "size": 74864,
+        "dashboard": null
+      },
+      {
+        "name": "4 17 24 dr talos email.pdf",
+        "path": "original_csv/4 17 24 dr talos email.pdf",
+        "size": 1310540,
+        "dashboard": "dashboard-01"
+      },
+      {
+        "name": "4 19 24 americangaslighter email.pdf",
+        "path": "original_csv/4 19 24 americangaslighter email.pdf",
+        "size": 121173,
+        "dashboard": null
+      },
+      {
+        "name": "8 26 24 stopracescience calendly.pdf",
+        "path": "original_csv/8 26 24 stopracescience calendly.pdf",
+        "size": 198749,
+        "dashboard": null
+      },
+      {
+        "name": "8 28 24 stopracescience email.pdf",
+        "path": "original_csv/8 28 24 stopracescience email.pdf",
+        "size": 461692,
+        "dashboard": null
+      },
+      {
+        "name": "8 28 24b stopracescience email.pdf",
+        "path": "original_csv/8 28 24b stopracescience email.pdf",
+        "size": 230435,
+        "dashboard": null
+      },
+      {
+        "name": "9 1 24 stopracescience email.pdf",
+        "path": "original_csv/9 1 24 stopracescience email.pdf",
+        "size": 113353,
+        "dashboard": null
+      },
+      {
+        "name": "9 11 25 various ben texts from iphone.pdf",
+        "path": "original_csv/9 11 25 various ben texts from iphone.pdf",
+        "size": 8289789,
+        "dashboard": null
+      },
+      {
+        "name": "9 2 24 stopracescience email.pdf",
+        "path": "original_csv/9 2 24 stopracescience email.pdf",
+        "size": 165767,
+        "dashboard": null
+      },
+      {
+        "name": "9 2 24b stopracescience email.pdf",
+        "path": "original_csv/9 2 24b stopracescience email.pdf",
+        "size": 615968,
+        "dashboard": null
+      },
       {
         "name": "Ben W From MeetMe to 9046004423 JSON.csv",
         "path": "original_csv/Ben W From MeetMe to 9046004423 JSON.csv",
