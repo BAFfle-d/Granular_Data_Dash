@@ -1,0 +1,50 @@
+name: Rebuild source index
+
+on:
+  push:
+    paths:
+      - 'dashboards/**'
+      - 'original_csv/**'
+      - 'original_image/**'
+      - 'original_video/**'
+      - 'tools/build_manifest.py'
+      - 'tools/manifest.config.json'
+      - 'tools/extra_sources.json'
+      - '.github/workflows/rebuild-manifest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-manifest-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Regenerate dashboard and source index
+        run: python tools/build_manifest.py
+
+      - name: Commit the updated index
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/manifest.json
+          if git diff --cached --quiet; then
+            echo 'Manifest already current.'
+          else
+            git commit -m 'Update dashboard and source index'
+            git push origin main
+          fi
