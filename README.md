@@ -1,67 +1,35 @@
 # WEINGARD.ONLINE
 
-A static, DOS-styled front page that indexes the dashboards in `dashboards/`
-and provides a browsable bank of the original source files
-(`original_csv/`, `original_image/`, `original_video/`) with a built-in
-file viewer (close / prev-next / copy / export / "view in dashboard").
+A static, DOS-styled front page indexing the dashboards in `dashboards/` and the original source files in `original_csv/`, `original_image/`, and `original_video/`. The source viewer provides close, previous/next, copy, export, and “view in dashboard” controls.
 
-## Do I have to edit code when I add files?
+## Automatic updates on GitHub
 
-**No.** The page now **auto-discovers** what's in the folders at load time:
+**No manual rebuild is required after adding, removing, or replacing files on GitHub.**
 
-| Where the site runs | What happens when you add files |
-|---|---|
-| Local preview (`python -m http.server`) | Files appear in the dropdowns the **instant you drop them in a folder** — no rebuild |
-| Live site (GitHub Pages) | Files appear as soon as you **push** them — no rebuild. Requires the one-time setup below |
-| Anywhere | `tools\REBUILD.bat` refreshes the *dashboard stats* (dates / lines / aliases) and the file→dashboard links |
+The workflow at `.github/workflows/rebuild-manifest.yml` runs after pushes affecting the dashboard folders, source folders, or manifest configuration. It runs `tools/build_manifest.py`, updates `data/manifest.json`, and commits the result back to `main`.
 
-**One-time setup for the live site:** open `tools\manifest.config.json` and
-set `"githubRepo": "your-username/your-repository"`. The page then reads the
-folder contents through GitHub's public API. The repository must be
-**public** (private repos block unauthenticated API reads; if it stays
-private, just run `REBUILD.bat` and push the updated `data/manifest.json`
-whenever you add files — the old workflow).
+After the workflow commits the updated manifest, the connected hosting service must deploy that commit before the change appears on the site. You can also run the workflow manually from GitHub’s Actions tab.
 
-New dashboards dropped into `dashboards/` appear in the directory
-immediately (numbered at the bottom, marked "recently added"); run
-`REBUILD.bat` once to fill in their real dates / lines / aliases.
+This works with the repository set to **private**; the browser does not need access to GitHub’s API.
 
-The generator (`tools/build_manifest.py`) reads each dashboard's embedded
-data to compute the **real** start/end dates, line count, platforms, and
-aliases, links each source file to its dashboard (exact file-name match,
-then the keyword rules in `manifest.config.json`), and writes
-`data/manifest.json`. You never touch `index.html`, `app.js`, or
-`style.css` for content changes.
+## Local updates
 
-### Repo-only files
+For a local preview, run:
 
-Some originals (and whole dashboards) live in the GitHub repo but not in
-this local folder. The generator handles both cases:
-
-- `tools/extra_sources.json` lists files that exist only in the repo (e.g.
-  the original CSVs/images stored on GitHub). They are merged into the
-  manifest's source dropdowns; local files always win on name conflicts.
-- A `dashboards` entry in `tools/manifest.config.json` whose file is **not**
-  present locally is treated as a *repo-only dashboard*: all of its stats
-  (lines, dates, platforms, aliases, sourceFiles) come from the config —
-  see `dashboard-05` for the worked example.
-
-## Preview locally
-
-Fetch-based features (CSV preview, copy) need the folder served over HTTP.
-From this folder run:
-
-```
+```text
 python -m http.server 8000
 ```
 
-then open <http://localhost:8000>. Opening `index.html` directly from disk
-(`file://`) still shows the dashboard directory but leaves the source
-dropdowns empty.
+Then open `http://localhost:8000`. A real local directory listing lets new files appear immediately. Opening `index.html` directly from disk is not supported for source preview or copy operations.
 
-## GitHub Pages
+To rebuild manually, run `tools/REBUILD.bat` on Windows or:
 
-Upload the whole folder (keeping the structure). Run `tools\REBUILD.bat`
-before pushing so `data/manifest.json` matches the files you upload.
-The `noindex` tags discourage search indexing but are **not** access
-control — handle the password protection / limited distribution separately.
+```text
+python tools/build_manifest.py
+```
+
+The generator reads each dashboard’s embedded data to calculate dates, unique line counts, platforms, aliases, and source-file associations. Configuration and manual overrides live in `tools/manifest.config.json`. Files listed in `tools/extra_sources.json` are merged when needed.
+
+## Hosting and privacy
+
+Upload or push the whole repository while preserving its folder structure. The `noindex` tags discourage search indexing but are not access control; use the password protection and limited-distribution arrangements you have chosen separately.
