@@ -207,7 +207,7 @@
     return d ? './dashboards/' + encodeURIComponent(d.file) : null;
   }
   function setStatus(msg, isErr) {
-    var s = el('viewer-status'); s.textContent = msg || ' '; s.classList.toggle('status-err', !!isErr);
+    var s = el('viewer-status'); s.textContent = msg || ' '; s.classList.toggle('status-err', !!isErr);
   }
   function openViewer(kind, index) {
     var files = (MANIFEST.sources && MANIFEST.sources[kind]) || [];
