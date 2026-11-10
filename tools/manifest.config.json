@@ -51,6 +51,11 @@
       "id": "dashboard-06",
       "pageTitle": "DASHBOARD 06 — EMAILS & GCHAT",
       "dataType": "EMAIL + GCHAT DATA"
+    },
+
+    "emails and gchat.html": {
+      "exclude": true,
+      "_note": "Superseded by dashboard-06 (emails and gchat dash.html) - same data, older untitled build. File stays in the repo for reference but is kept off the front-page listing."
     }
   },
 
