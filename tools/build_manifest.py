@@ -193,6 +193,9 @@ def main():
             continue
         dash_id = f"dashboard-{len(dashboards) + 1:02d}"
         override = dash_cfg.get(meta["file"], {})
+        if override.get("exclude"):
+            print(f"- {meta['file']}: excluded by manifest.config.json")
+            continue
         if override.get("id"):
             dash_id = override["id"]
 
