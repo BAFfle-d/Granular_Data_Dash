@@ -9,6 +9,18 @@
   },
 
   "dashboards": {
+    "dashboard-00-master.html": {
+      "id": "dashboard-00",
+      "pageTitle": "DASHBOARD 00 — MASTER EVIDENCE INDEX (v3.6.1)",
+      "dataType": "ALL CHANNELS — DEDUPLICATED MASTER LIST",
+      "lines": 37064,
+      "dateStart": "2022-08-15",
+      "dateEnd": "2026-11-09",
+      "platforms": ["SMS", "Call", "Email", "Google Chat", "Facebook Messenger", "Telegram", "TextNow", "TextFree", "MeetMe", "Grindr", "WordPress"],
+      "aliases": ["Ben"],
+      "_note": "Built 2026-11-11 from evidence-dashboards-v3.6.1-deduped.xlsx: 37,064 deduplicated records across 6 evidence buckets (BEN_CONFIRMED 18,280 / BEN_THIRD_PARTY 294 / THIRD_PARTY_NON_BEN 17,546 / SUSPECTED_UNCONFIRMED 786 / SUSPECTED_CATFISH 155 / ABOUT_BEN 3). TAGS column (channel · direction · platform · tier · undated) is filterable from the top bar. This is the primary entry point; dashboards 01-06 remain for per-alias narrative granularity. Source workbook: original_csv/ (upload pending)."
+    },
+
     "josh-nunes-dr-talos-ben-weingard.html": {
       "id": "dashboard-01",
       "pageTitle": "DASHBOARD 01 — JOSH NUNES / DR TALOS / BEN WEINGARD",
@@ -70,6 +82,7 @@
   ],
 
   "sourceKeywordRules": {
+    "dashboard-00": ["master_v3.6.1", "ben_confirmed", "ben_third_party", "third_party_non_ben", "suspected_unconfirmed", "suspected_catfish", "about_ben"],
     "dashboard-06": ["gchat", "compendium", "totality email", "protonmail"],
     "dashboard-05": ["stalker3 knew sandy", "deduped stalker3", "jerks off in front of children", "ben stuff", "ben w from meetme"],
     "dashboard-03": ["calllog", "call log", "4636", "meetme to", "meetme to 9046004423"],
