@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-10T18:32:49",
+  "generated": "2026-11-10T18:33:20",
   "identity": {
     "siteTitle": "WEINGARD.ONLINE",
     "contactName": "Barry Floore",
@@ -7,6 +7,32 @@
     "intro": ""
   },
   "dashboards": [
+    {
+      "id": "dashboard-00",
+      "file": "dashboard-00-master.html",
+      "pageTitle": "DASHBOARD 00 — MASTER EVIDENCE INDEX (v3.6.1)",
+      "dateStart": "2022-08-15",
+      "dateEnd": "2026-11-09",
+      "dataType": "ALL CHANNELS — DEDUPLICATED MASTER LIST",
+      "lines": 37064,
+      "platforms": [
+        "SMS",
+        "Call",
+        "Email",
+        "Google Chat",
+        "Facebook Messenger",
+        "Telegram",
+        "TextNow",
+        "TextFree",
+        "MeetMe",
+        "Grindr",
+        "WordPress"
+      ],
+      "aliases": [
+        "Ben"
+      ],
+      "sourceFiles": []
+    },
     {
       "id": "dashboard-01",
       "file": "josh-nunes-dr-talos-ben-weingard.html",
@@ -1234,6 +1260,15 @@
   "autoDiscovery": {
     "githubRepo": "BAFfle-d/Granular_Data_Dash",
     "sourceRules": {
+      "dashboard-00": [
+        "master_v3.6.1",
+        "ben_confirmed",
+        "ben_third_party",
+        "third_party_non_ben",
+        "suspected_unconfirmed",
+        "suspected_catfish",
+        "about_ben"
+      ],
       "dashboard-06": [
         "gchat",
         "compendium",
