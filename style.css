@@ -115,3 +115,40 @@ iframe.viewer-youtube, iframe.viewer-pdf { width: 100%; height: 100%; min-height
   .viewer-overlay { padding: 8px; }
   .viewer-toolbar-gap { display: none; }
 }
+
+/* ============ ACCORDIONS ============ */
+.acc-group { border: 2px solid var(--heading); margin: 4px 0 0; }
+details.acc { border-top: 1px dashed var(--heading); }
+details.acc:first-child { border-top: 0; }
+details.acc summary {
+  list-style: none; cursor: pointer; padding: 10px 10px;
+  font-weight: 700; color: var(--blue); font-size: 14px; overflow-wrap: anywhere;
+}
+details.acc summary::-webkit-details-marker { display: none; }
+details.acc summary::before { content: "+ "; color: var(--heading); }
+details.acc[open] summary::before { content: "– "; }
+details.acc summary:hover { background: #efefef; }
+.acc-body { padding: 4px 12px 12px 14px; font-size: 13.5px; }
+.acc-body p { margin: 6px 0; max-width: 68ch; }
+.acc-kicker { color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; margin: 0 0 4px; }
+
+/* ============ HIGHLIGHTS ============ */
+.hl-quote { margin: 8px 0; padding: 6px 10px; border-left: 3px solid var(--blue); color: var(--heading); font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
+.hl-quote .q-by { display: block; font-size: 11px; font-weight: 700; color: var(--blue); }
+.hl-link {
+  display: inline-block; margin: 6px 6px 2px 0; padding: 6px 12px;
+  color: var(--blue); font-weight: 700; font-size: 12px; text-decoration: none;
+  border: 2px solid var(--heading); background: var(--paper);
+}
+.hl-link:hover { background: var(--blue); color: var(--paper); }
+.hl-count { color: var(--heading); font-size: 12px; font-weight: 700; }
+
+/* ============ COMPACT PINNED STRIP ============ */
+.pin-strip .origin-chain { padding-left: 0; margin-top: 8px; }
+.pin-strip .origin-chain::before { display: none; }
+.pin-strip .origin-node::before { display: none; }
+.pin-strip .origin-node { padding: 10px 12px; margin-bottom: 10px; }
+.pin-strip .origin-why { font-size: 12.5px; margin-bottom: 8px; }
+.pin-strip .origin-title { font-size: 13.5px; margin: 2px 0 6px; }
+.pin-strip .origin-quote { margin-bottom: 6px; font-size: 12.5px; }
+.pin-strip .origin-after { margin-top: 2px; }
