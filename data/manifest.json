@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-10T19:34:58",
+  "generated": "2026-11-16T07:58:50",
   "identity": {
     "siteTitle": "WEINGARD.ONLINE",
     "contactName": "Barry Floore",
@@ -10,11 +10,11 @@
     {
       "id": "dashboard-00",
       "file": "dashboard-00-master.html",
-      "pageTitle": "DASHBOARD 00 — MASTER EVIDENCE INDEX (v3.6.1)",
-      "dateStart": "2022-08-15",
+      "pageTitle": "DASHBOARD 00 — MASTER EVIDENCE INDEX (v3.7.1)",
+      "dateStart": "2022-06-13",
       "dateEnd": "2026-11-09",
       "dataType": "ALL CHANNELS — DEDUPLICATED MASTER LIST",
-      "lines": 37064,
+      "lines": 48963,
       "platforms": [
         "SMS",
         "Call",
@@ -1261,13 +1261,14 @@
     "githubRepo": "BAFfle-d/Granular_Data_Dash",
     "sourceRules": {
       "dashboard-00": [
-        "master_v3.6.1",
+        "master_v3.7.1",
         "ben_confirmed",
         "ben_third_party",
         "third_party_non_ben",
         "suspected_unconfirmed",
         "suspected_catfish",
-        "about_ben"
+        "about_ben",
+        "held_likely_nelson"
       ],
       "dashboard-06": [
         "gchat",
