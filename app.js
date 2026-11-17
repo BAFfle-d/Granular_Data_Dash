@@ -45,7 +45,7 @@
     return m[3] + ' ' + MONTHS[parseInt(m[2], 10) - 1] + ' ' + m[1];
   }
   function fmtNum(n) { return Number(n || 0).toLocaleString('en-US'); }
-  function kindLabel(kind) { return kind === 'csv' ? 'DOCUMENTS / CSV' : kind === 'image' ? 'IMAGES' : 'AUDIO / VIDEO'; }
+  function kindLabel(kind) { return kind === 'csv' ? 'DOCUMENTS' : kind === 'image' ? 'IMAGES' : 'AUDIO / VIDEO'; }
   function folderFor(kind) { return kind === 'csv' ? 'original_csv' : kind === 'image' ? 'original_image' : 'original_video'; }
   function normName(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
 
@@ -200,7 +200,7 @@
       var row = document.createElement('div'); row.className = 'source-row';
       var label = document.createElement('label');
       label.className = 'source-label'; label.setAttribute('for', 'src-' + kind);
-      label.textContent = 'C:\\WEINGARD.ONLINE\\' + (kind === 'csv' ? 'ORIGINAL_CSV' : kind === 'image' ? 'ORIGINAL_IMAGE' : 'ORIGINAL_VIDEO') + '>';
+      label.textContent = 'C:\\WEINGARD.ONLINE\\' + (kind === 'csv' ? 'ORIGINAL_DOC' : kind === 'image' ? 'ORIGINAL_IMAGE' : 'ORIGINAL_VIDEO') + '>';
       var select = document.createElement('select');
       select.id = 'src-' + kind; select.className = 'source-select';
       select.innerHTML = '<option value="">&mdash; SELECT FILE (' + files.length + ') &mdash;</option>' + files.map(function (f, i) { return '<option value="' + i + '">' + esc(f.name) + '</option>'; }).join('');
