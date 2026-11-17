@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-17T04:43:05",
+  "generated": "2026-11-17T04:44:49",
   "identity": {
     "siteTitle": "WEINGARD.ONLINE",
     "contactName": "Barry Floore",
@@ -402,6 +402,12 @@
   "sources": {
     "csv": [
       {
+        "name": "06 xx 25 Messages with Ben 845 280 3476.pdf",
+        "path": "original_csv/06 xx 25 Messages with Ben 845 280 3476.pdf",
+        "size": 8938853,
+        "dashboard": null
+      },
+      {
         "name": "10 16 24 stopracescience email.pdf",
         "path": "original_csv/10 16 24 stopracescience email.pdf",
         "size": 1645702,
@@ -456,10 +462,22 @@
         "dashboard": null
       },
       {
+        "name": "2 14 25 gvoice messaging between ben 92956844636 to mbf 9128164702.csv",
+        "path": "original_csv/2 14 25 gvoice messaging between ben 92956844636 to mbf 9128164702.csv",
+        "size": 31080,
+        "dashboard": "dashboard-03"
+      },
+      {
         "name": "2 14 25 stopracescience email.pdf",
         "path": "original_csv/2 14 25 stopracescience email.pdf",
         "size": 74864,
         "dashboard": null
+      },
+      {
+        "name": "2 14 to 4 12 25 sms extract from google voice 4423 with 9295684636.csv",
+        "path": "original_csv/2 14 to 4 12 25 sms extract from google voice 4423 with 9295684636.csv",
+        "size": 39403,
+        "dashboard": "dashboard-03"
       },
       {
         "name": "2 15 2025 SMS Extraction with Ben W 0370.html",
@@ -468,15 +486,39 @@
         "dashboard": null
       },
       {
+        "name": "4 14 24 google voice extra - ben jerks off...pdf",
+        "path": "original_csv/4 14 24 google voice extra - ben jerks off...pdf",
+        "size": 1246906,
+        "dashboard": null
+      },
+      {
+        "name": "4 16 - 20 24 various catfishes on google voice with 7168 and dr. talos.csv",
+        "path": "original_csv/4 16 - 20 24 various catfishes on google voice with 7168 and dr. talos.csv",
+        "size": 82783,
+        "dashboard": "dashboard-01"
+      },
+      {
         "name": "4 17 24 dr talos email.pdf",
         "path": "original_csv/4 17 24 dr talos email.pdf",
         "size": 1310540,
         "dashboard": "dashboard-01"
       },
       {
+        "name": "4 17-18 26 SMS Extraction with Ben Lies 9046588314.pdf",
+        "path": "original_csv/4 17-18 26 SMS Extraction with Ben Lies 9046588314.pdf",
+        "size": 166299,
+        "dashboard": null
+      },
+      {
         "name": "4 18 2024 screenshots of call and text ben 1303.pdf",
         "path": "original_csv/4 18 2024 screenshots of call and text ben 1303.pdf",
         "size": 4463510,
+        "dashboard": null
+      },
+      {
+        "name": "4 18 24 G Chat and Call with benweingard at gmail dot com.pdf",
+        "path": "original_csv/4 18 24 G Chat and Call with benweingard at gmail dot com.pdf",
+        "size": 5110598,
         "dashboard": null
       },
       {
@@ -495,6 +537,18 @@
         "name": "4 xx 2024 telegram chat with dialectic materialism.pdf",
         "path": "original_csv/4 xx 2024 telegram chat with dialectic materialism.pdf",
         "size": 2903028,
+        "dashboard": null
+      },
+      {
+        "name": "6 13-15 25 iMessages with Ben 845 280 3476 - 2.pdf",
+        "path": "original_csv/6 13-15 25 iMessages with Ben 845 280 3476 - 2.pdf",
+        "size": 10072823,
+        "dashboard": null
+      },
+      {
+        "name": "6 13-15 25 iMessages with Ben 845 280 3476.pdf",
+        "path": "original_csv/6 13-15 25 iMessages with Ben 845 280 3476.pdf",
+        "size": 8295590,
         "dashboard": null
       },
       {
@@ -525,6 +579,12 @@
         "name": "8 28 24b stopracescience email.pdf",
         "path": "original_csv/8 28 24b stopracescience email.pdf",
         "size": 230435,
+        "dashboard": null
+      },
+      {
+        "name": "8 xx 25 telegram hereditarian left - ben on camera.pdf",
+        "path": "original_csv/8 xx 25 telegram hereditarian left - ben on camera.pdf",
+        "size": 3186348,
         "dashboard": null
       },
       {
