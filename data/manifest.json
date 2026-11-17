@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-17T04:16:42",
+  "generated": "2026-11-17T04:43:05",
   "identity": {
     "siteTitle": "WEINGARD.ONLINE",
     "contactName": "Barry Floore",
@@ -438,6 +438,12 @@
         "dashboard": null
       },
       {
+        "name": "10 22 24 SMS Extraction with Ben w From Meetme.html",
+        "path": "original_csv/10 22 24 SMS Extraction with Ben w From Meetme.html",
+        "size": 4498192,
+        "dashboard": "dashboard-05"
+      },
+      {
         "name": "2 11 25 stopracescience email.pdf",
         "path": "original_csv/2 11 25 stopracescience email.pdf",
         "size": 947149,
@@ -456,15 +462,51 @@
         "dashboard": null
       },
       {
+        "name": "2 15 2025 SMS Extraction with Ben W 0370.html",
+        "path": "original_csv/2 15 2025 SMS Extraction with Ben W 0370.html",
+        "size": 2965087,
+        "dashboard": null
+      },
+      {
         "name": "4 17 24 dr talos email.pdf",
         "path": "original_csv/4 17 24 dr talos email.pdf",
         "size": 1310540,
         "dashboard": "dashboard-01"
       },
       {
+        "name": "4 18 2024 screenshots of call and text ben 1303.pdf",
+        "path": "original_csv/4 18 2024 screenshots of call and text ben 1303.pdf",
+        "size": 4463510,
+        "dashboard": null
+      },
+      {
         "name": "4 19 24 americangaslighter email.pdf",
         "path": "original_csv/4 19 24 americangaslighter email.pdf",
         "size": 121173,
+        "dashboard": null
+      },
+      {
+        "name": "4 9 24 Text with Stalker and Alert from Dad.pdf",
+        "path": "original_csv/4 9 24 Text with Stalker and Alert from Dad.pdf",
+        "size": 1669693,
+        "dashboard": "dashboard-02"
+      },
+      {
+        "name": "4 xx 2024 telegram chat with dialectic materialism.pdf",
+        "path": "original_csv/4 xx 2024 telegram chat with dialectic materialism.pdf",
+        "size": 2903028,
+        "dashboard": null
+      },
+      {
+        "name": "8 25 24 telegram conversation screenshots hereditarian left 1.pdf",
+        "path": "original_csv/8 25 24 telegram conversation screenshots hereditarian left 1.pdf",
+        "size": 10620630,
+        "dashboard": null
+      },
+      {
+        "name": "8 25 24 telegram conversation screenshots hereditarian left.pdf",
+        "path": "original_csv/8 25 24 telegram conversation screenshots hereditarian left.pdf",
+        "size": 4510675,
         "dashboard": null
       },
       {
