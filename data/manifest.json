@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-17T07:40:55",
+  "generated": "2026-11-17T07:42:17",
   "identity": {
     "siteTitle": "WEINGARD.ONLINE",
     "contactName": "Barry Floore",
@@ -1160,6 +1160,12 @@
         "dashboard": null
       },
       {
+        "name": "03 2024 screenshots benweingard gchat.pdf",
+        "path": "original_image/03 2024 screenshots benweingard gchat.pdf",
+        "size": 5907164,
+        "dashboard": "dashboard-06"
+      },
+      {
         "name": "10 17 26 CATFISH AS NICK L FROM OHIO 1.jpg",
         "path": "original_image/10 17 26 CATFISH AS NICK L FROM OHIO 1.jpg",
         "size": 488008,
@@ -1481,6 +1487,12 @@
         "name": "UNCLEAR DATE 10 26 26 NORTH FLORIDA PATRIOTS TELEGRAM - HITLER WAS RIGHT.jpg",
         "path": "original_image/UNCLEAR DATE 10 26 26 NORTH FLORIDA PATRIOTS TELEGRAM - HITLER WAS RIGHT.jpg",
         "size": 506663,
+        "dashboard": null
+      },
+      {
+        "name": "UNK 2024 telegram call with hereditarian left.pdf",
+        "path": "original_image/UNK 2024 telegram call with hereditarian left.pdf",
+        "size": 9558345,
         "dashboard": null
       }
     ],
