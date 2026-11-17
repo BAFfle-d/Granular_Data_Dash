@@ -8,12 +8,13 @@ What it does
    (var CARDS = {...}) to compute REAL values for the front page:
      - date range (first -> last record date)
      - number of data lines (total and unique)
-     - platforms used
+   - platforms used
      - aliases used (sender/receiver names)
      - source file names (used to link original files back to dashboards)
 2. Scans the original-source folders:
      original_csv/  original_image/  original_video/
-   and lists every file found, mapping each to the dashboard it belongs to
+   and lists every file found (the original_csv folder is the document bank —
+   ALL document types, not just csv), mapping each to the dashboard it belongs to
    (exact/normalized match against dashboard source files, then keyword rules).
 3. Merges your overrides from tools/manifest.config.json
    (identity text, per-dashboard display tweaks, ignore patterns).
@@ -37,6 +38,9 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "tools" / "manifest.config.json"
 OUT_PATH = ROOT / "data" / "manifest.json"
 
+# The "csv" key is legacy (folder + manifest key); the group displays on the
+# site as ORIGINAL_DOC and holds EVERY document type (csv, html, pdf, json,
+# xml, txt, docx, ...), not just csv.
 SOURCE_FOLDERS = {
     "csv": "original_csv",
     "image": "original_image",
